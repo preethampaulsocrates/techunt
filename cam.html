@@ -43,15 +43,11 @@
         // Start the scanner
         Instascan.Camera.getCameras().then(function (cameras) {
             if (cameras.length > 0) {
-                const stream = cameras[0].stream;
-                const track = stream.getVideoTracks()[0];
+                const backCameras = cameras.filter(camera => camera.name.toLowerCase().includes('back'));
+                const selectedCamera = backCameras.length > 0 ? backCameras[0] : cameras[0];
 
-                // Apply a transform to the track to flip the video horizontally
-                track.applyConstraints({
-                    advanced: [{ facingMode: 'environment' }]
-                });
-
-                scanner.start(cameras[0]);
+                // Set deviceId to select the back camera directly
+                scanner.start({ video: { deviceId: selectedCamera.id } });
             } else {
                 console.error('No cameras found.');
             }
