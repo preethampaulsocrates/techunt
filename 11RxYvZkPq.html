@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        h1 {
+            color: #FF5733;
+        }
+
+        #collegeLogoBox {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        #collegeLogo {
+            max-width: 40%; /* Adjust the width as needed */
+            border-radius: 5px;
+        }
+
+        #questionBox {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        #questionImage {
+            max-width: 100%; /* Adjust the width as needed */
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #questionText {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        #answerInput {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        #submitButton {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #submitButton:hover {
+            background-color: #45a049;
+        }
+
+        #hiddenAnswer {
+            display: none;
+        }
+        /* Add this style to your existing CSS or in the head of your HTML document */
+
+        
+    </style>
+    <script>
+        function validateAnswer() {
+            var userAnswer = document.getElementById("answerInput").value.toLowerCase();
+            var correctAnswer = "sdc is the best".toLowerCase();
+
+            if (userAnswer === correctAnswer) {
+                window.location.href = "12MxVtZkNq.html";
+            } else {
+                alert("Incorrect answer. Please try again.");
+            }
+        }
+
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <!-- College Logo Box -->
+    <h1>Level-11</h1>
+    <div id="collegeLogoBox">
+        <img src="logo.jpg" alt="College Logo" id="collegeLogo">
+    </div>
+    
+    <h1>Tech Hunt Game</h1>
+
+    <!-- Question Box -->
+    <div id="questionBox">
+        
+        <div id="questionText">
+            <!-- Replace the text below with your question -->
+            <strong><h3 style="color:blue;">Can you find this Place?</h3></strong>
+            <p>Yea!! I'm a room beside huge audience thinkkk! Kaun Hun Mein???</p>
+            <p><b>Clue:</b>Decipher the puzzle presented there</p>
+        </div>
+        
+        <label for="answerInput">Enter the answer:</label>
+        <input type="text" id="answerInput" autocomplete="off">
+        <br>
+        <button type="button" id="submitButton" onclick="validateAnswer()">Submit Answer</button>
+    </div>
+
+    <div id="hiddenAnswer">
+        Your correct answer: <span id="correctAnswer">your_answer_here</span>
+    </div>
+</body>
+</html>
