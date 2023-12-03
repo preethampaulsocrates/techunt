@@ -96,37 +96,35 @@
     <p>Among wires and data, I'm a sturdy foundation.</p>
     <p>Not flesh, not bone, but a structure of might,</p>
     <p>What am I, embracing knowledge day and night?</p>
-    <script src="https://cdn.jsdelivr.net/gh/schmich/instascan-builds@2.0.0/instascan.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
     <script>
-        const video = document.getElementById('video');
-
-        // Create a scanner
-        const scanner = new Instascan.Scanner({ video: video });
-
-        // Handle scanned results
-        scanner.addListener('scan', function (content) {
-            window.location.href = content; // Redirect to the scanned URL
+        // Initialize Quagga
+        Quagga.init({
+            inputStream: {
+                name: "Live",
+                type: "LiveStream",
+                target: document.querySelector("#video"),
+                constraints: {
+                    width: 640,
+                    height: 480,
+                    facingMode: "environment" // Use the rear camera (if available)
+                },
+            },
+            decoder: {
+                readers: ["code_128_reader", "ean_reader", "ean_8_reader", "code_39_reader", "code_39_vin_reader", "codabar_reader", "upc_reader", "upc_e_reader", "i2of5_reader"],
+            },
+        }, function(err) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            Quagga.start();
         });
 
-        // Start the scanner
-      // Get the cameras and start the scanner
-Instascan.Camera.getCameras().then(function (cameras) {
-    if (cameras.length > 0) {
-        // Use the back camera (if available)
-        const backCameras = cameras.filter(camera => camera.name.toLowerCase().includes('back'));
-        const selectedCamera = backCameras.length > 0 ? backCameras[0] : cameras[0];
-        
-        // Set mirror option to false to disable mirroring
-        selectedCamera.mirror = false;
-
-        scanner.start(selectedCamera);
-    } else {
-        console.error('No cameras found.');
-    }
-}).catch(function (e) {
-    console.error(e);
-});
-
+        // Add event listener for successful scans
+        Quagga.onDetected(function(result) {
+            window.location.href = result.codeResult.code;
+        });
     </script>
 </body>
 </html>
